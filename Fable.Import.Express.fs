@@ -73,7 +73,7 @@ module express =
         // [<Emit("$0($1...)")>] abstract Invoke: err: Error -> unit
 
     and Request =
-        inherit http_types.ServerRequest
+        inherit Http.ServerRequest
         inherit Express.Request
         abstract headers: obj with get, set
         abstract accepted: ResizeArray<MediaType> with get, set
@@ -120,7 +120,7 @@ module express =
         abstract subtype: string with get, set
 
     and Response =
-        inherit http_types.ServerResponse
+        inherit Http.ServerResponse
         inherit Express.Response
         abstract send: body: obj -> Response
         abstract json: body: obj -> Response
@@ -209,11 +209,11 @@ module express =
         abstract configure: env0: string * env1: string * env2: string * env3: string * env4: string * fn: Function -> Application
         abstract render: name: string * ?options: obj * ?callback: Func<Error, string, unit> -> unit
         abstract render: name: string * callback: Func<Error, string, unit> -> unit
-        abstract listen: port: int * hostname: string * backlog: float * ?callback: Function -> http_types.Server
-        abstract listen: port: int * hostname: string * ?callback: Function -> http_types.Server
-        abstract listen: port: int * ?callback: Function -> http_types.Server
-        abstract listen: path: string * ?callback: Function -> http_types.Server
-        abstract listen: handle: obj * ?listeningListener: Function -> http_types.Server
+        abstract listen: port: int * hostname: string * backlog: float * ?callback: Function -> Http.Server
+        abstract listen: port: int * hostname: string * ?callback: Function -> Http.Server
+        abstract listen: port: int * ?callback: Function -> Http.Server
+        abstract listen: path: string * ?callback: Function -> Http.Server
+        abstract listen: handle: obj * ?listeningListener: Function -> Http.Server
         abstract route: path: string -> IRoute
 
     and Express =
